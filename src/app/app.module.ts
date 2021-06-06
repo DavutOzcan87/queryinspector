@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { LandingComponent } from './landing/landing.component';
 import { FormsModule } from '@angular/forms';
 import { SearchparamComponent } from './searchparam/searchparam.component';
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
 
 
 @NgModule({
@@ -15,7 +17,9 @@ import { SearchparamComponent } from './searchparam/searchparam.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ButtonModule,
+    InputTextModule
   ],
   providers: [],
   bootstrap: [LandingComponent]

@@ -4,7 +4,8 @@
 
 
 <div class="landing">
-    <input type="text" [(ngModel)]="url" class="input-url"/>
+    <input id="url" type="text" [(ngModel)]="url" class="p-inputtext-lg" pInputText/>
+    <small id="url-help">Enter a url to start inspecting..</small>
     <span *ngFor="let search of searchParams">
         <app-searchparam param={{search}}></app-searchparam>
     </span>
