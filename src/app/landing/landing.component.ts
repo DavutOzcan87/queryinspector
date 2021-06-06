@@ -26,7 +26,7 @@ export class LandingComponent implements OnInit,OnChanges {
 
 
   constructor(private urlService:UrlService ) { 
-    this.url = 'https://test.com?arg1=value1&arg2=value2'
+    
   }
   
 
@@ -40,6 +40,7 @@ export class LandingComponent implements OnInit,OnChanges {
       console.log("setting url" , url);
       this.url=url;
     });
+    this.url = 'https://test.com?arg1=value1&arg2=value2';
   }
 
   ngOnChanges(changes: SimpleChanges): void {
