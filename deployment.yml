@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: urlinspect
+  name: urlinspect
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: urlinspect
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: urlinspect
+    spec:
+      containers:
+      - image: davutozcan/urlinspector:1
+        name: urlinspect
+        resources: {}
+      imagePullSecrets:
+        - name: registry-dwt-development
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: urlinspect
+  name: urlinspect
+spec:
+  ports:
+  - name: 80-80
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: urlinspect
+  type: ClusterIP
+status:
+  loadBalancer: {}
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: urlinspect
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: urlinspector.online-dev-tools.com
+    kubernetes.io/ingress.class: "nginx"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+spec:
+  tls:
+    - hosts:
+        - urlinspector.online-dev-tools.com
+      secretName: urlinspect
+  rules:
+    - host: urlinspector.online-dev-tools.com
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: urlinspect
+              servicePort: 80
