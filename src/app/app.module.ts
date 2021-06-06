@@ -4,11 +4,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { LandingComponent } from './landing/landing.component';
 import { FormsModule } from '@angular/forms';
+import { SearchparamComponent } from './searchparam/searchparam.component';
 
 
 @NgModule({
   declarations: [
-    LandingComponent
+    LandingComponent,
+    SearchparamComponent
   ],
   imports: [
     BrowserModule,

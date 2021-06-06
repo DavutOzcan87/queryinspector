@@ -1,0 +1,4 @@
+.searchparamcontainer{
+    display: flex;
+    flex-direction: row;
+}

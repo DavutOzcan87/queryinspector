@@ -1,2 +1,11 @@
-<p>landing works!</p>
-<input type="text" [(ngModel)]="url" class="input-url"/>
+
+
+
+
+
+<div class="landing">
+    <input type="text" [(ngModel)]="url" class="input-url"/>
+    <span *ngFor="let search of searchParams">
+        <app-searchparam param={{search}}></app-searchparam>
+    </span>
+</div>

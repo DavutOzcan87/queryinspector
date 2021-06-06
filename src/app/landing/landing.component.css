@@ -2,3 +2,9 @@
     width: 80%;
     color: rebeccapurple;
 }
+
+.landing{
+    display: flex;
+    flex-direction: column;
+    -ms-flex-align: center;
+}
