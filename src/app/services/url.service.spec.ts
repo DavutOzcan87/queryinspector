@@ -15,8 +15,8 @@ describe('UrlService', () => {
   });
 
   it('should publish query params', done=>{
-    service.url.next("https://localhost:8080?arg1=value1&arg2=value2");
-    service.queryParams.subscribe(params =>{
+    service.url$.next("https://localhost:8080?arg1=value1&arg2=value2");
+    service.queryParams$.subscribe(params =>{
       console.log(params);
       expect(params).toContain("arg1","arg2");
       done();

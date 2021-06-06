@@ -15,8 +15,9 @@ export class LandingComponent implements OnInit,OnChanges {
     return this._url;
   }
   public set url(value: string) {
+    console.log("new value");
     this._url = value;
-    this.urlService.url.next(value);
+    this.urlService.update(this._url);
   }
 
   searchParams: string[] = [];
@@ -28,10 +29,10 @@ export class LandingComponent implements OnInit,OnChanges {
   
 
   ngOnInit(): void {
-    this.urlService.queryParams.subscribe(params => {
+    this.urlService.queryParams$.subscribe(params => {
       console.log("params received", params);
       this.searchParams = params;
-    });
+    },err=>console.error(err));
   }
 
   ngOnChanges(changes: SimpleChanges): void {
