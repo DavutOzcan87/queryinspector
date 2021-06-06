@@ -1,12 +1,9 @@
 
-
-
-
-
 <div class="landing">
     <input id="url" type="text" [(ngModel)]="url" class="p-inputtext-lg" pInputText/>
     <small id="url-help">Enter a url to start inspecting..</small>
     <span *ngFor="let search of searchParams">
-        <app-searchparam param={{search}}></app-searchparam>
+        <app-searchparam key={{search.key}} value={{search.value}}></app-searchparam>
     </span>
 </div>
+<p-toast key="msg" position="top-right"></p-toast>

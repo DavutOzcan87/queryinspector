@@ -1,7 +1,9 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import {InputTextModule} from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
-import { UrlService } from '../services/url.service';
+import { KeyValue, UrlService } from '../services/url.service';
+import {ToastModule} from 'primeng/toast';
+
 
 @Component({
   selector: 'app-landing',
@@ -20,7 +22,7 @@ export class LandingComponent implements OnInit,OnChanges {
     this.urlService.update(this._url);
   }
 
-  searchParams: string[] = [];
+  searchParams: KeyValue[] = [];
 
 
   constructor(private urlService:UrlService ) { 
@@ -33,6 +35,11 @@ export class LandingComponent implements OnInit,OnChanges {
       console.log("params received", params);
       this.searchParams = params;
     },err=>console.error(err));
+
+    this.urlService.url$.subscribe(url=>{
+      console.log("setting url" , url);
+      this.url=url;
+    });
   }
 
   ngOnChanges(changes: SimpleChanges): void {

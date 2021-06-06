@@ -1,6 +1,7 @@
 <div class="searchparamcontainer">
-    <span>{{param}}</span>
-    <button pButton type="button" label="Delete" icon="pi pi-trash"></button>
-    <button pButton type="button" label="Copy Key" icon="pi pi-copy"></button>
-    <button pButton type="button" label="Copy Value" icon="pi pi-copy"></button>
+    <span class="searchkey">{{key}}</span>
+    <span class="searchvalue">{{value}}</span>
+    <button pButton type="button" label="Delete" icon="pi pi-trash" (click)="deleteKey()"></button>
+    <button pButton type="button" label="Copy Key" icon="pi pi-copy" (click)="copyKey()"></button>
+    <button pButton type="button" label="Copy Value" icon="pi pi-copy" (click)="copyValue()"></button>
 </div>
