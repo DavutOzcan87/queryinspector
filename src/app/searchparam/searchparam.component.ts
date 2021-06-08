@@ -44,4 +44,25 @@ export class SearchparamComponent implements OnInit {
         this.messageService.add({ key: "msg", severity: 'error', summary: 'error', detail: "browser does not support copy command" });
       });
   }
+
+  onKeyUpdated(event: string){
+    console.log('key updated', event);
+    let arg = {
+      oldKey: this.key,
+      newKey: event,
+      value: this.value
+    };
+    this.urlService.updateKey(arg);
+    this.key = event;
+  } 
+  
+  onValueUpdated(event: string){
+    console.log('value updated', event);
+    let arg = {
+      key: this.key,
+      oldValue: this.value,
+      newValue: event
+    };
+    this.urlService.updateValue(arg);
+  }
 }
