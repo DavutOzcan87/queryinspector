@@ -31,17 +31,7 @@ export class UrlService {
   }
 
   private parseUnsafe(url: string): KeyValue[] {
-    let splitted = url.split('?');
-    if(splitted.length != 2)
-      return [];
-    let search = splitted[1].split('&');
-    return search.map(o=>{
-      let keyValueArr = o.split('=');
-      return {
-        key: keyValueArr[0],
-        value: keyValueArr.length === 2 ? keyValueArr[1]:""
-      };
-    })
+    return new CustomURL(url).searchParams();
   }
 
   update(_url: string) {
@@ -97,4 +87,35 @@ export class UrlService {
 export class KeyValue {
   key: string="";
   value: string="";
+}
+
+
+export class CustomURL{
+  prefix: string;
+  search?: string;
+  constructor(value: string){
+    let index = value.indexOf('?');
+    if(index == -1){
+      this.prefix = value;
+      this.search = undefined;
+    }else{
+      this.prefix = value.substring(0,index);
+      this.search = value.substr(index+1);
+    }
+  }
+
+  searchParams(): KeyValue[]{
+    if(!this.search)
+      return [];
+
+    let search = this.search?.split('&');
+    return search.map(o=>{
+      let keyValueArr = o.split('=');
+      return {
+        key: keyValueArr[0],
+        value: keyValueArr.length === 2 ? keyValueArr[1]:""
+      };
+    })
+  }
+
 }
