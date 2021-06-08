@@ -10,13 +10,15 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import {ToastModule} from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { EncodableinputComponent } from './encodableinput/encodableinput.component';
 
 
 
 @NgModule({
   declarations: [
     LandingComponent,
-    SearchparamComponent
+    SearchparamComponent,
+    EncodableinputComponent
   ],
   imports: [
     BrowserModule,

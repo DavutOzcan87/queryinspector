@@ -1,0 +1,12 @@
+.container{
+    display: flex;
+    gap: 1rem;
+}
+
+.spancontainer{
+    flex-grow: 1;
+}
+
+.centered{
+    align-self: center;
+}
