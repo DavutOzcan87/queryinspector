@@ -18,7 +18,7 @@ spec:
         app: urlinspect
     spec:
       containers:
-      - image: davutozcan/urlinspector:1
+      - image: davutozcan/urlinspector:2
         name: urlinspect
         resources: {}
       imagePullSecrets:
