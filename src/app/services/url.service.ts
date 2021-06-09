@@ -42,43 +42,38 @@ export class UrlService {
 
   deleteSearchParam(key: string) {
     console.log("deleting search param",key);
-     let uri = new URL(this.url$.getValue());
-     uri.searchParams.delete(key);
-     this.url$.next(uri.toString());
+    let uri = new CustomURL(this.url$.getValue());
+    let searchParams = uri.searchParams();
+    let removed = searchParams.filter(o=> o.key !== key);
+    let newUri = this.buildUri(uri.prefix , removed);
+    this.update(newUri);
   }
 
   updateValue(arg: { key: string; oldValue: string; newValue: string; }) {
-    let uri = new URL(this.url$.getValue());
-    let search = uri.search;
-    search = search.replace('?','');
-    let params = search.split('&')
-       .map(o=>o.split('='))
-       .map(arr=>{
-         return {
-          key: arr[0],
-          value: arr.length === 2 ? arr[1]:undefined
-         };
-       });
-      let found = params.find(o=>o.key === arg.key);
-      if(found !== undefined)
-        found.value= arg.newValue;
-     let newSearch ="?"+params.map(o=> {
-      let str = o.key;
-      if(o.value){
-        str = str+"="+o.value;
-      }
-      return str;
-    })
-    .join("&");
-    console.log('new search' , newSearch);
-    params.forEach(o=> uri.searchParams.delete(o.key));
-    this.update(uri.toString()+newSearch);
+    let url = new CustomURL(this.url$.getValue());
+    let search = url.searchParams();
+    let found = search.find(o=>o.key === arg.key);
+    if(found){
+      found.value = arg.newValue;
+    }
+    let newUrl = this.buildUri(url.prefix , search);
+    this.update(newUrl);
+  }
+  buildUri(prefix: string, search: KeyValue[]):string {
+    if(search.length == 0)
+       return prefix;
+    let searchPart = search.map(o=>o.key+"="+o.value).join('&');
+    return prefix+"?"+searchPart;
   }
   updateKey(arg: { oldKey: string; newKey: string; value: string; }) {
-    let uri = new URL(this.url$.getValue());
-    uri.searchParams.delete(arg.oldKey);
-    uri.searchParams.append(arg.newKey , arg.value );
-    this.url$.next(uri.toString());
+    let uri = new CustomURL(this.url$.getValue());
+    let searchPart = uri.searchParams();
+    let found = searchPart.find(o=>o.key === arg.oldKey);
+    if(found){
+      found.key = arg.newKey;
+    }
+    let newUrl = this.buildUri(uri.prefix , searchPart);
+    this.url$.next(newUrl);
   }
 }
 
@@ -119,3 +114,4 @@ export class CustomURL{
   }
 
 }
+
