@@ -5,8 +5,17 @@
 
 .spancontainer{
     flex-grow: 1;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .centered{
     align-self: center;
+}
+
+.encode-button{
+    width: 2em;
+    min-width: 2em;
+    height: 2em;
 }

@@ -2,8 +2,9 @@
     <!-- <span class="searchkey">{{key}}</span>
     <span class="searchvalue">{{value}}</span> -->
     <app-encodableinput class="searchkey" arg="{{key}}" (valueChanged)="onKeyUpdated($event)"></app-encodableinput>
-    <app-encodableinput class="searchvalue" arg="{{value}}" (valueChanged)="onValueUpdated($event)"></app-encodableinput>
-    <button pButton type="button" label="Delete" icon="pi pi-trash" (click)="deleteKey()"></button>
-    <button pButton type="button" label="Copy Key" icon="pi pi-copy" (click)="copyKey()"></button>
-    <button pButton type="button" label="Copy Value" icon="pi pi-copy" (click)="copyValue()"></button>
+    <app-encodableinput class="searchvalue" arg="{{value}}" (valueChanged)="onValueUpdated($event)">
+    </app-encodableinput>
+    <button class="m-button" pButton type="button" label="Delete" icon="pi pi-trash" (click)="deleteKey()"></button>
+    <button class="m-button" pButton type="button" label="Copy Key" icon="pi pi-copy" (click)="copyKey()"></button>
+    <button class="m-button" pButton type="button" label="Copy Value" icon="pi pi-copy" (click)="copyValue()"></button>
 </div>
