@@ -49,9 +49,7 @@ kind: Ingress
 metadata:
   name: urlinspect
   annotations:
-    external-dns.alpha.kubernetes.io/hostname: urlinspector.davutozcan.com
-    kubernetes.io/ingress.class: "nginx"
-    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    cert-manager.io/cluster-issuer: "letsencrypt"
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
 spec:
   tls:
